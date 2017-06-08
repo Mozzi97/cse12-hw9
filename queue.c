@@ -1,3 +1,13 @@
+/*
+ * Filename: queue.c
+ * Author: Jinxiao Chen
+ * Userid: <A14236655>
+ * Login: cs12xii
+ * Description: queue
+ * Date: 6/8/2017
+ * Source of Help: None
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,13 +22,13 @@
  */
 Queue * queue_init() {
 
-    Queue * queue =(Queue *) {
-    (Node **)malloc(QUEUE_SIZE * sizeof(Node)),
-    REAR_INIT,
-    FRONT_INIT
+    Queue * queue =(Queue *) malloc(sizeof(Queue));
+    queue->array = (Node **) malloc(QUEUE_SIZE * sizeof(Node *));
+    queue->rear = REAR_INIT;
+    queue->front = FRONT_INIT;
 
-    };
     
+
     return queue;
 }
 /*
@@ -46,11 +56,8 @@ Node * dequeue(Queue* queue) {
 		printf("%s\n", QUEUE_UNDERFLOW);
 		return NULL;
 	}
-
-
-	Node *item = queue->array[queue->front];
 	queue->front = (queue->front + 1);
-
+	Node *item = queue->array[queue->front];
 	return item;
 }
 
@@ -62,16 +69,17 @@ Node * peek(Queue* queue) {
 	printf("%s\n", QUEUE_UNDERFLOW);
 	return NULL;
 	}
+	queue->front = (queue->front + 1);
 	Node *item = queue->array[queue->front];
+	queue->front = (queue->front - 1);
 	return item;
 }
 /*
  * Destructs a queue
  */
 void queue_delete(Queue* queue) {
-	for(int i=queue->front;i<=queue->rear;i++){
-		dequeue(&queue[i]);
-	}
+	free(queue->array);
+	free(queue);
 }
 /*
  * Prints out the information of a queue
@@ -84,13 +92,14 @@ void print(Queue* queue) {
 	}
 	else {
 		int i;
-		int *temp;
-		printf(STR_PRINT_ITEMS);
-		for(int i=queue->front;i<=queue->rear;i++){
-			*temp+=queue->array[i]->key_value;
+//		char *temp[size(queue)];
+//		char *temp = (char *) malloc((size(queue)) * sizeof(char *));
+		printf("%s ",STR_PRINT_ITEMS);
+			for(i=queue->front+1;i<=queue->rear;i++){
+				printf("%d ",queue->array[i]->key_value);
 			}
-		printf("%d",*temp);
 		printf("\n");
+//		free(*temp);
 	}
 	printf("%s\n", PRINT_DASH);
 }
