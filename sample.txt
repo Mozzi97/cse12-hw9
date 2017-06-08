@@ -1,0 +1,83 @@
+$ ./a.out
+Enter the number of nodes:
+5
+Enter the values to be inserted into the tree:
+10
+6
+7
+4
+15
+Tree has been successfully created!
+Enter key to be searched:
+7
+----------------------------------------
+Key found!
+----------------------------------------
+BFS for the tree is:
+10 6 15 4 7 
+----------------------------------------
+Level order traversal for the tree is:
+10 
+6 15 
+4 7 
+----------------------------------------
+Tree Destroyed!
+Good Bye!!
+----------------------------------------
+$ ./a.out
+Enter the number of nodes:
+5
+Enter the values to be inserted into the tree:
+1
+2
+3
+4
+5
+Tree has been successfully created!
+Enter key to be searched:
+6
+----------------------------------------
+Key not found!
+----------------------------------------
+BFS for the tree is:
+1 2 3 4 5 
+----------------------------------------
+Level order traversal for the tree is:
+1 
+2 
+3 
+4 
+5 
+----------------------------------------
+Tree Destroyed!
+Good Bye!!
+----------------------------------------
+$ ./a.out
+Enter the number of nodes:
+7
+Enter the values to be inserted into the tree:
+4
+2
+7
+3
+1
+9
+12
+Tree has been successfully created!
+Enter key to be searched:
+11
+----------------------------------------
+Key not found!
+----------------------------------------
+BFS for the tree is:
+4 2 7 1 3 9 12 
+----------------------------------------
+Level order traversal for the tree is:
+4 
+2 7 
+1 3 9 
+12 
+----------------------------------------
+Tree Destroyed!
+Good Bye!!
+----------------------------------------

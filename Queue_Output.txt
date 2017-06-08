@@ -1,0 +1,64 @@
+$ ./a.out
+Lets test your queue!
+----------------------------------------
+1.Enqueue 2.Deque 3.Peek 4.Print 5.isEmpty 6.Size 7.Exit
+1
+Enter key to enque
+4
+Enqueue Successful : 4
+> 
+1
+Enter key to enque
+34
+Enqueue Successful : 34
+> 
+1
+Enter key to enque
+56
+Enqueue Successful : 56
+> 
+4
+----------------------------------------
+Items in the queue are: 4 34 56
+----------------------------------------
+> 
+5
+Queue is not Empty
+> 
+6
+ Size of queue is  : 3
+> 
+2
+Dequeue successful : 4
+> 
+2
+Dequeue successful : 34
+> 
+2
+Dequeue successful : 56
+> 
+2
+Queue is Empty
+Dequeue unsuccessful
+> 
+5
+Queue is Empty!
+> 
+6
+ Size of queue is  : 0
+> 
+4
+----------------------------------------
+There are no items to print
+----------------------------------------
+> 
+1
+Enter key to enque
+66
+Enqueue Successful : 66
+> 
+6
+ Size of queue is  : 1
+> 
+7
+Good Bye!!
