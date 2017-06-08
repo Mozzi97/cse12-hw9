@@ -32,12 +32,9 @@ void enqueue(Queue* queue, Node *node) {
 		printf("%s\n", QUEUE_OVERFLOW);
 	else
 	{
-		if(isEmpty(queue)){
-			queue->front = (queue->front+1);
-		}
+
 		queue->rear = (queue->rear + 1);
 		queue->array[queue->rear] = node;
-//	    printf("%d enqueued to queue\n", *node);
 	}
 }
 
@@ -101,12 +98,12 @@ void print(Queue* queue) {
  * Checks if the queue is empty
  */
 int isEmpty(Queue* queue) {
-    return sizeof(queue)/4 == 0;
+    return size(queue) == 0;
 }
 
 /*
 * Returns the number of elements in the queue
 */
 int size(Queue* queue) {
-    return sizeof(queue)/4;
+    return queue->rear - queue->front;
 }
