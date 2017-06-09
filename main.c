@@ -76,28 +76,28 @@ void searchKey(int key, Node *root)
 void bfs(Node *root)
 {
 	printf("%s\n", PRINT_BFS);
+	if(root == NULL){
+		printf("\n");
+		return;
+	}
 	Queue* queue = queue_init();
+	Node *temp;
 	enqueue(queue,root);
 
 	 while (!isEmpty(queue)){
-		 Node *temp = (Node *) malloc(sizeof(Node));
+//		 Node *temp = (Node *) malloc(sizeof(Node));
 		 temp = dequeue(queue);
-
-
-		 if(root != NULL){
-			 if(temp->left != NULL)
-				 enqueue(queue,temp->left);
-			 if(temp->right != NULL)
-			 enqueue(queue,temp->right);
-		 }
-
 		 printf("%d ",temp->key_value);
-		 free(temp);
+
+		 if(temp->left != NULL)
+			 enqueue(queue,temp->left);
+		 if(temp->right != NULL)
+			 enqueue(queue,temp->right);
 
 
 	 }
 	 printf("\n");
-	 free(queue);
+	 queue_delete(queue);
 }
 
 /*
@@ -107,40 +107,38 @@ void bfs(Node *root)
 void levelOrderTraversal(Node *root)
 {
 	printf("%s\n", PRINT_LEVEL);
-	Queue* queue2 = queue_init();
-	enqueue(queue2,root);
+	if(root == NULL){
+		printf("\n");
+		return;
+	}
+	Queue* queue = queue_init();
+	Node *temp;
+	enqueue(queue,root);
 
-	 while (!isEmpty(queue2)){
-		 Node *temp2 = (Node *) malloc(sizeof(Node));
-		 temp2 = dequeue(queue2);
+	int count = 1;
 
+	 while (!isEmpty(queue)){
+//		 Node *temp = (Node *) malloc(sizeof(Node));
+		 temp = dequeue(queue);
+		 printf("%d ",temp->key_value);
+		 count--;
 
-		 if(root != NULL){
-			 if(temp2->left != NULL){
-				 enqueue(queue2,temp2->left);
-			 }
-			 if(temp2->right != NULL){
-				 enqueue(queue2,temp2->right);
-			 }
+		 if(temp->left != NULL)
+			 enqueue(queue,temp->left);
+
+		 if(temp->right != NULL)
+			 enqueue(queue,temp->right);
+
+		 if(count == 0){
+			 printf("\n");
+			 count=size(queue);
 		 }
-
-		 printf("%d ",temp2->key_value);
-		 free(temp2);
-
 
 	 }
 	 printf("\n");
-	 free(queue2);
+	 queue_delete(queue);
 
-//		printf("%d ",temp2->key_value);
-//		if(temp->right != NULL){
-//			printf("\n");
-//		}
 
-//		free(temp2);
-//		}
-//	printf("\n");
-//	free(queue);
 }
 
 
@@ -158,7 +156,7 @@ int main(int argc, char **argv)
 	levelOrderTraversal(root);
 	printf("%s\n", PRINT_DASH);
 	//free memory from the BST
-//	free(queue);
+	delete_tree(root);
 	printf("%s\n", DELETE_TREE);
 	printf("%s\n",STR_GOODBYE);
 	printf("%s\n", PRINT_DASH);
