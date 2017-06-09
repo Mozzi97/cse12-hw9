@@ -1,6 +1,17 @@
+/*
+ * Filename: main.c
+ * Author: Jinxiao Chen
+ * Userid: <A14236655>
+ * Login: cs12xii
+ * Description: Breadth-First-Search, Level Order Traversal and Key Search
+ * Date: 6/8/2017
+ * Source of Help: None
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
+
 
 #define READ_VALS "Enter the values to be inserted into the tree:"
 #define NUM_VALS "Enter the number of nodes:"
@@ -12,16 +23,25 @@
 #define KEY_NOT_FOUND "Key not found!"
 #define DELETE_TREE "Tree Destroyed!"
 
+
 /*
- * Reads the number of keys and the keys from the user. Inserts them into the BST with the given root one by one.
+ * Reads the number of keys and the keys from the user. Inserts them into the
+ * BST with the given root one by one.
  */
 void readTree(Node **root)
 {
-	//TODO Declarations
+	//Declarations
+	int num = 0;
 	printf("%s\n",NUM_VALS);
-	//TODO
+	scanf("%d",&num);
+
+	int numarr[num];
+	int i;
 	printf("%s\n",READ_VALS);
-	//TODO
+	for(i=0;i<num;i++){
+		scanf("%d",&numarr[i]);
+		insert(numarr[i],root);
+	}
 	printf("%s\n", TREE_CREATED);
 }
 
@@ -30,9 +50,11 @@ void readTree(Node **root)
  */
 int readSearchKey()
 {
-	//TODO Declarations
+	//Declarations
+	int key = 0;
 	printf("%s\n", PRINT_SEARCH_ELEMENT);
-	//TODO
+	scanf("%d", &key);
+	return key;
 }
 
 /*
@@ -41,8 +63,7 @@ int readSearchKey()
  */
 void searchKey(int key, Node *root)
 {
-	//TODO
-	if(/*TODO*/)
+	if(search(key,root))
 		printf("%s\n", KEY_FOUND);
 	else
 		printf("%s\n", KEY_NOT_FOUND);
@@ -55,7 +76,28 @@ void searchKey(int key, Node *root)
 void bfs(Node *root)
 {
 	printf("%s\n", PRINT_BFS);
-	//TODO
+	Queue* queue = queue_init();
+	enqueue(queue,root);
+
+	 while (!isEmpty(queue)){
+		 Node *temp = (Node *) malloc(sizeof(Node));
+		 temp = dequeue(queue);
+
+
+		 if(root != NULL){
+			 if(temp->left != NULL)
+				 enqueue(queue,temp->left);
+			 if(temp->right != NULL)
+			 enqueue(queue,temp->right);
+		 }
+
+		 printf("%d ",temp->key_value);
+		 free(temp);
+
+
+	 }
+	 printf("\n");
+	 free(queue);
 }
 
 /*
@@ -65,22 +107,58 @@ void bfs(Node *root)
 void levelOrderTraversal(Node *root)
 {
 	printf("%s\n", PRINT_LEVEL);
-    //TODO	
+	Queue* queue2 = queue_init();
+	enqueue(queue2,root);
+
+	 while (!isEmpty(queue2)){
+		 Node *temp2 = (Node *) malloc(sizeof(Node));
+		 temp2 = dequeue(queue2);
+
+
+		 if(root != NULL){
+			 if(temp2->left != NULL){
+				 enqueue(queue2,temp2->left);
+			 }
+			 if(temp2->right != NULL){
+				 enqueue(queue2,temp2->right);
+			 }
+		 }
+
+		 printf("%d ",temp2->key_value);
+		 free(temp2);
+
+
+	 }
+	 printf("\n");
+	 free(queue2);
+
+//		printf("%d ",temp2->key_value);
+//		if(temp->right != NULL){
+//			printf("\n");
+//		}
+
+//		free(temp2);
+//		}
+//	printf("\n");
+//	free(queue);
 }
+
+
 
 int main(int argc, char **argv)
 {
 	Node *root = NULL;
-	readTree(/*TODO*/);
+	readTree(&root);
 	int key = readSearchKey();
 	printf("%s\n", PRINT_DASH);
-	searchKey(/*TODO*/);
+	searchKey(key,root);
 	printf("%s\n", PRINT_DASH);
-	bfs(/*TODO*/);
+	bfs(root);
 	printf("%s\n", PRINT_DASH);
-	levelOrderTraversal(/*TODO*/);
+	levelOrderTraversal(root);
 	printf("%s\n", PRINT_DASH);
-	//TODO - free memory from the BST
+	//free memory from the BST
+//	free(queue);
 	printf("%s\n", DELETE_TREE);
 	printf("%s\n",STR_GOODBYE);
 	printf("%s\n", PRINT_DASH);

@@ -18,24 +18,23 @@
  */
 void insert(int key, Node **root)
 {
-  if(search(key,*root)){
-	  return;
-  }
-  else{
+
 	  if(*root == NULL){
 		  Node *newnode = (Node *)malloc(sizeof(Node));
 		  newnode->key_value = key;
 		  newnode->left = NULL;
 		  newnode->right = NULL;
+		  *root = newnode;
 	  }
 	  else{
-		  if(key<*root->key_value)
-			  return insert(key, *root->left);
-		  else
-			  return insert(key, *root->right);
+		  if(key<(*root)->key_value){
+			  return insert(key, &((*root)->left));
+		  }
+		  else{
+			  return insert(key, &((*root)->right));
+		  }
 
 	  }
-  }
 }
 
 
@@ -66,5 +65,11 @@ int search(int key, Node *root)
  */
 void delete_tree(Node *root)
 {
-  //TODO
+	if(root!=NULL)
+	    {
+	        delete_tree(root->left);
+	        delete_tree(root->right);
+
+	        free(root);
+	    }
 }

@@ -89,7 +89,7 @@ int main(int argc, char * argv[]) {
 
 	//destroy queue completely
 	int i;
-	for (i = queue->front; i < queue->rear; i++) {
+	for (i = queue->front+1; i <= queue->rear; i++) {
         if ( i == -1) break;
 		free(queue->array[i]);
 	}
