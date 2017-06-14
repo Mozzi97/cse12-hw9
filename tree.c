@@ -18,7 +18,9 @@
  */
 void insert(int key, Node **root)
 {
-
+	  if(search(key,*root)){
+		  return;
+	  }
 	  if(*root == NULL){
 		  Node *newnode = (Node *)malloc(sizeof(Node));
 		  newnode->key_value = key;

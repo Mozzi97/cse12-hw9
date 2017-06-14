@@ -38,7 +38,9 @@ Queue * queue_init() {
  */
 void enqueue(Queue* queue, Node *node) {
 
+
 	if(size(queue)==QUEUE_SIZE)
+    //if queue is full
 		printf("%s\n", QUEUE_OVERFLOW);
 	else
 	{
@@ -53,6 +55,7 @@ void enqueue(Queue* queue, Node *node) {
  */
 Node * dequeue(Queue* queue) {
 	if (isEmpty(queue)) {
+    //if queue is empty
 		printf("%s\n", QUEUE_UNDERFLOW);
 		return NULL;
 	}
@@ -66,6 +69,7 @@ Node * dequeue(Queue* queue) {
  */
 Node * peek(Queue* queue) {
 	if (isEmpty(queue)) {
+    //if queue is empty
 	printf("%s\n", QUEUE_UNDERFLOW);
 	return NULL;
 	}
@@ -92,14 +96,11 @@ void print(Queue* queue) {
 	}
 	else {
 		int i;
-//		char *temp[size(queue)];
-//		char *temp = (char *) malloc((size(queue)) * sizeof(char *));
 		printf("%s ",STR_PRINT_ITEMS);
 			for(i=queue->front+1;i<=queue->rear;i++){
 				printf("%d ",queue->array[i]->key_value);
 			}
 		printf("\n");
-//		free(*temp);
 	}
 	printf("%s\n", PRINT_DASH);
 }
